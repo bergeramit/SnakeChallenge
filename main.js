@@ -214,7 +214,7 @@ let snakeStep = function () {
             }
             break;
     }
-    if(s.x == ROWS || s.x == -1 || s.y == COLS || s.y == -1){
+    if(s.x == ROWS || s.x == -1 || s.y == COLS || s.y == -1 || hitSelf(s)){
         return false;
     }
     snake.place.push(s);
@@ -244,6 +244,14 @@ initiateBoard();
 ceateSnake();
 createFruit();
 startMovement();
+
+let hitSelf = function(s){
+    for(let i=0;i<snake.place.length;++i){
+        if(s.x == snake.place[i].x && s.y == snake.place[i].y)
+            return true;
+    }
+    return false;
+}
 
 
 let resetGame = function(){
